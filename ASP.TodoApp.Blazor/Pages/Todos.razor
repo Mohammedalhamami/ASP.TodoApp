@@ -1,0 +1,78 @@
+﻿@page "/todos"
+@using ASP.TodoApp.Blazor.Models
+
+
+<div class="container p-3 m-3">
+    <ul class="list-group">
+        @foreach (var todo in _todos)
+        {
+            <li class="list-group-item position-relative p-3 m-1 border border-1">
+                <div class="d-flex">
+                    <div class="flex-grow-1">
+                        <p class="m-0 p-0 @(todo.Completed ? "text-decoration-line-through" : "")">
+                            @todo.Description
+                        </p>
+                    </div>
+                    <div>
+                        <p class="m-0 p-0">
+                            <span class="badge bg-primary">
+                                <small>
+                                    <i>
+                                        @todo.CreatedAt
+                                    </i>
+                                </small>
+                            </span>
+                        </p>
+                    </div>
+                </div>
+
+            </li>
+        }
+
+    </ul>
+</div>
+
+@code {
+    private List<Todo> _todos = [];
+
+    protected override void OnInitialized()
+    {
+        _todos = new List<Todo>()
+            {
+                new Todo
+                {
+                    Id = 1,
+                    Description = "My birth day party",
+                    CreatedAt = new DateTime(2024, 5, 13, 5, 30, 22),
+                    Completed = false
+
+                },
+
+                new Todo
+                {
+                    Id = 2,
+                    Description = "Go to Minstry of Health",
+                    CreatedAt = new DateTime(2024, 5, 02, 10, 30, 22),
+                    Completed = true
+
+                },
+                new Todo
+                {
+                    Id = 3,
+                    Description = "First time as night sheft nurse",
+                    CreatedAt = new DateTime(2024, 5, 04, 14, 30, 22),
+                    Completed = false
+
+                },
+                new Todo
+                {
+                    Id = 4,
+                    Description = "Finsh Udemy Course Api",
+                    CreatedAt = new DateTime(2024, 5, 30, 5, 30, 22),
+                    Completed = false
+
+                },
+            };
+    }
+
+}
